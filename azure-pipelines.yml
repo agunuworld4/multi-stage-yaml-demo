@@ -3,8 +3,8 @@ trigger:
 - master
 
 variables:
-  imageName: 'gosample'
-  registry: 'kubreg.azurecr.io'
+  imageName: 'myhcxyz'
+  registry: 'agunuacr.azurecr.io'
 
 stages:
 - stage: build
@@ -15,7 +15,7 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'ACR'
+        containerRegistry: 'AgunuACR'
         repository: '$(imageName)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
@@ -42,8 +42,8 @@ stages:
             - task: KubernetesManifest@0
               inputs:
                 action: 'deploy'
-                kubernetesServiceConnection: 'dev-kub-gosample-1558821689026'
-                namespace: 'gosample'
+                kubernetesServiceConnection: 'kubernetes-service-connection-on-azure'
+                namespace: 'default'
                 manifests: '$(System.ArtifactsDirectory)/manifests/deploy.yaml'
                 containers: '$(registry)/$(imageName):$(Build.BuildId)'
 
