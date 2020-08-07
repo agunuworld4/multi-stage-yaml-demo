@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: gosample
-        image: kubreg.azurecr.io/gosample
+        image: agunuacr.azurecr.io/myhcxyz
         ports:
         - containerPort: 8080
         resources:
